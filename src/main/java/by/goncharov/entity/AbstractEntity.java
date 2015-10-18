@@ -15,7 +15,7 @@ import java.io.Serializable;
 public abstract class AbstractEntity implements Serializable {
 
     @Id
-    @Column(name = "aim_category_id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
