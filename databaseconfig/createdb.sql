@@ -1,6 +1,6 @@
 drop table if exists contact;
 drop table if exists aim;
-drop table if exists charges;
+drop table if exists expenses;
 drop table if exists goods_category;
 drop table if exists users;
 drop table if exists role;
