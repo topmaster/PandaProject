@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
 /**
@@ -12,6 +13,7 @@ import java.io.Serializable;
  * @author Mikita Hancharou
  * @created 19.10.2015 0:49
  */
+@MappedSuperclass
 public abstract class AbstractEntity implements Serializable {
 
     @Id

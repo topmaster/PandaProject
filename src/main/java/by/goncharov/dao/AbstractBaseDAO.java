@@ -3,6 +3,7 @@ package by.goncharov.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
  * @author Mikita Hancharou
  * @created 20.05.13 11:05
  */
+@Component
 public abstract class AbstractBaseDAO implements Serializable {
 
     @Autowired

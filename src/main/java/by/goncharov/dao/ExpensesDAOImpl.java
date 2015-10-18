@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @created 24.05.13 10:33
  */
 @Repository
-public class ChargesDAOImpl extends AbstractBaseDAO implements ChargesDAO {
+public class ExpensesDAOImpl extends AbstractBaseDAO implements ExpensesDAO {
 
     @Transactional(readOnly = false)
     public void save(Expenses expenses) {
