@@ -45,7 +45,7 @@ public class Contact extends AbstractEntity implements Serializable {
     @Column(name = "contact_type")
     private Integer type;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_user_id", nullable = false)
     private User user;
 

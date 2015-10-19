@@ -34,11 +34,11 @@ public class Aim extends AbstractEntity implements Serializable {
     @Column(name = "red_line")
     private Date redLine;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_user_id", nullable = false)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_aim_category_id", nullable = false)
     private AimCategory aimCategory;
 

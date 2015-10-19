@@ -10,5 +10,6 @@
     </bean>
 
     <import resource="classpath:applicationContext.xml"/>
+    <import resource="classpath:securityContext.xml"/>
 
 </beans>

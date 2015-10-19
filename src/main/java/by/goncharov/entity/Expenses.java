@@ -32,7 +32,7 @@ public class Expenses extends AbstractEntity implements Serializable {
     @JoinColumn(name = "fk_goods_category_id", nullable = false)
     private GoodsCategory goodsCategory;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_user_id", nullable = false)
     private User user;
 

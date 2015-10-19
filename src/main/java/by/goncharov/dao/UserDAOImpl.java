@@ -27,4 +27,11 @@ public class UserDAOImpl extends AbstractBaseDAO implements UserDAO {
     public User find(Long userId) {
         return (User) super.find(User.class, userId);
     }
+
+    @Transactional(readOnly = true)
+    public User findUserByUsername(String username) {
+        User user = (User) getSessionFactory().getCurrentSession().createQuery("from User where username=?")
+                .setParameter(0, username).uniqueResult();
+        return user;
+    }
 }

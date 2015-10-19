@@ -22,9 +22,6 @@ public class Role extends AbstractEntity implements Serializable {
     @Column(unique = true, name = "role_name")
     private String roleName;
 
-    @Column(name = "contact_type")
-    private Integer type;
-
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = true)
     private Set<User> userSet;
@@ -37,23 +34,11 @@ public class Role extends AbstractEntity implements Serializable {
         this.roleName = roleName;
     }
 
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
     public Set<User> getUserSet() {
         return userSet;
     }
 
     public void setUserSet(Set<User> userSet) {
         this.userSet = userSet;
-    }
-
-    public RoleType getContactType() {
-        return RoleType.getEnum(type);
     }
 }

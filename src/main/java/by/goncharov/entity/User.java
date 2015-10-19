@@ -26,7 +26,7 @@ public class User extends AbstractEntity implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_role_id", nullable = false)
     private Role role;
 
