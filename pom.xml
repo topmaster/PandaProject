@@ -17,6 +17,7 @@
         <postgresql-version>9.1-901-1.jdbc4</postgresql-version>
         <javax.servlet-version>3.0.1</javax.servlet-version>
         <jstl-version>1.2</jstl-version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>

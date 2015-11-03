@@ -36,7 +36,7 @@ public class AuthorizationController {
         if (logout != null) {
             model.addObject("msg", "You've been logged out successfully.");
         }
-        model.setViewName("index");
+        model.setViewName("login");
 
         return model;
     }
