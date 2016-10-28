@@ -1,18 +1,35 @@
 package by.goncharov.dao;
 
-import by.goncharov.entity.GoodsCategory;
+import by.goncharov.entity.GoodsCategoryEntity;
 
 /**
- * Description of GoodsCategoryDAO class
+ * GoodsCategoryDAO.
  *
- * @author Mikita Hancharou
- * @created 24.05.13 10:20
+ * @author Mikita Hancharou <m.hancharou@gmail.com>
+ * @package by.goncharov.controller
  */
-public interface GoodsCategoryDAO {
+public interface GoodsCategoryDAO
+{
+	/**
+	 * Saves.
+	 *
+	 * @param entity the entity
+	 */
+	void save(GoodsCategoryEntity entity);
 
-    void save(GoodsCategory goodsCategory);
+	/**
+	 * Deletes.
+	 *
+	 * @param entity the entity
+	 */
+	void delete(GoodsCategoryEntity entity);
 
-    void delete(GoodsCategory goodsCategory);
-
-    GoodsCategory find(Long goodsCatId);
+	/**
+	 * Finds By Id.
+	 *
+	 * @param id the id
+	 *
+	 * @return the GoodsCategoryEntity
+	 */
+	GoodsCategoryEntity findById(Long id);
 }

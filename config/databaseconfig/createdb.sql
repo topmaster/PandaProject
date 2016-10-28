@@ -1,12 +1,12 @@
-drop table if exists contact;
+drop table if exists contactEntity;
 drop table if exists aim;
-drop table if exists expenses;
+drop table if exists expensesEntity;
 drop table if exists goods_category;
 drop table if exists users;
-drop table if exists role;
+drop table if exists roleEntity;
 drop table if exists aim_category;
 
-create table role (
+create table roleEntity (
     id int not null auto_increment,
     role_name varchar (255) not null unique,
     constraint pk_role primary key (id)
@@ -18,7 +18,7 @@ create table users (
     password varchar (255) not null,
     fk_role_id int not null,
     constraint pk_user primary key (id),
-    foreign key (fk_role_id) references role (id)
+    foreign key (fk_role_id) references roleEntity (id)
 );
 
 create table goods_category (
@@ -27,7 +27,7 @@ create table goods_category (
     constraint pk_goods_category primary key (id)
 );
 
-create table expenses (
+create table expensesEntity (
     id int not null auto_increment,
     expenses_article varchar (255) not null,
     payment_date varchar (11) not null,
@@ -38,7 +38,7 @@ create table expenses (
     foreign key (fk_user_id) references users (id)
 );
 
-create table contact (
+create table contactEntity (
     id int not null auto_increment,
     firstname varchar (255) not null,
     lastname varchar (255) not null,
@@ -56,8 +56,8 @@ create table contact (
 
 create table aim_category (
     id int not null auto_increment,
-    important boolean not null,
-    urgently boolean not null,
+    isImportant boolean not null,
+    isUrgently boolean not null,
     long_term boolean not null,
     constraint pk_aim_category primary key (id)
 );
@@ -76,5 +76,5 @@ create table aim (
     foreign key (fk_user_id) references users (id)
 );
 
-INSERT INTO role(id, role_name) VALUES (1, 'ROLE_USER');
+INSERT INTO roleEntity(id, role_name) VALUES (1, 'ROLE_USER');
 INSERT INTO users(username, password, fk_role_id) VALUES ('foo', 'bar', 1);

@@ -1,18 +1,35 @@
 package by.goncharov.dao;
 
-import by.goncharov.entity.Expenses;
+import by.goncharov.entity.ExpensesEntity;
 
 /**
- * Description of ExpensesDAO class
+ * ExpensesDAO.
  *
- * @author Mikita Hancharou
- * @created 24.05.13 10:31
+ * @author Mikita Hancharou <m.hancharou@gmail.com>
+ * @package by.goncharov.controller
  */
-public interface ExpensesDAO {
+public interface ExpensesDAO
+{
+	/**
+	 * Saves.
+	 *
+	 * @param entity the entity
+	 */
+	void save(ExpensesEntity entity);
 
-    void save(Expenses expenses);
+	/**
+	 * Deletes.
+	 *
+	 * @param entity the entity
+	 */
+	void delete(ExpensesEntity entity);
 
-    void delete(Expenses expenses);
-
-    Expenses find(Long chargesId);
+	/**
+	 * Finds By Id.
+	 *
+	 * @param id the id
+	 *
+	 * @return the ExpensesEntity
+	 */
+	ExpensesEntity findById(Long id);
 }

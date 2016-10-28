@@ -1,18 +1,35 @@
 package by.goncharov.dao;
 
-import by.goncharov.entity.Role;
+import by.goncharov.entity.RoleEntity;
 
 /**
- * Description of RoleDAO class
+ * RoleDAO.
  *
- * @author Mikita Hancharou
- * @created 18.05.13 15:46
+ * @author Mikita Hancharou <m.hancharou@gmail.com>
+ * @package by.goncharov.controller
  */
-public interface RoleDAO {
+public interface RoleDAO
+{
+	/**
+	 * Saves.
+	 *
+	 * @param entity the roleEntity
+	 */
+	void save(RoleEntity entity);
 
-    void save(Role role);
+	/**
+	 * Deletes.
+	 *
+	 * @param entity the roleEntity
+	 */
+	void delete(RoleEntity entity);
 
-    void delete(Role role);
-
-    Role find(Long roleId);
+	/**
+	 * Finds by id.
+	 *
+	 * @param id the id
+	 *
+	 * @return the RoleEntity
+	 */
+	RoleEntity findById(Long id);
 }

@@ -5,27 +5,40 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+
 import java.io.Serializable;
 
 /**
- * Description of AbstractEntity class
+ * AbstractEntity.
  *
- * @author Mikita Hancharou
- * @created 19.10.2015 0:49
+ * @author Mikita Hancharou <m.hancharou@gmail.com>
+ * @package by.goncharov.controller
  */
 @MappedSuperclass
-public abstract class AbstractEntity implements Serializable {
+public abstract class AbstractEntity implements Serializable
+{
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	private Long id;
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    private Long id;
+	/**
+	 * Gets id.
+	 *
+	 * @return the id
+	 */
+	public Long getId()
+	{
+		return id;
+	}
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+	/**
+	 * Sets id.
+	 *
+	 * @param id the id
+	 */
+	public void setId(final Long id)
+	{
+		this.id = id;
+	}
 }

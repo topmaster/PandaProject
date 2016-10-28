@@ -23,7 +23,7 @@
     </security:http>
 
     <security:authentication-manager alias="authenticationManager">
-        <security:authentication-provider user-service-ref="customUserDetailsServiceImpl"/>
+        <security:authentication-provider userEntity-service-ref="customUserDetailsServiceImpl"/>
     </security:authentication-manager>
 
 </beans>

@@ -1,18 +1,35 @@
 package by.goncharov.dao;
 
-import by.goncharov.entity.Contact;
+import by.goncharov.entity.ContactEntity;
 
 /**
- * Description of ContactDAO class
+ * ContactDAO.
  *
- * @author Mikita Hancharou
- * @created 26.06.13 10:45
+ * @author Mikita Hancharou <m.hancharou@gmail.com>
+ * @package by.goncharov.controller
  */
-public interface ContactDAO {
+public interface ContactDAO
+{
+	/**
+	 * Saves.
+	 *
+	 * @param entity the entity
+	 */
+	void save(ContactEntity entity);
 
-    void save(Contact contact);
+	/**
+	 * Deletes.
+	 *
+	 * @param entity the entity
+	 */
+	void delete(ContactEntity entity);
 
-    void delete(Contact contact);
-
-    Contact find(Long contactId);
+	/**
+	 * Finds By Id.
+	 *
+	 * @param id the id
+	 *
+	 * @return the ContactEntity
+	 */
+	ContactEntity findById(Long id);
 }

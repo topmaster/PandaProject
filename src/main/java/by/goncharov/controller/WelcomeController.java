@@ -6,17 +6,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Description of WelcomeController class
+ * Welcome Page Controller.
  *
- * @author Mikita Hancharou
- * @created 19.10.2015 1:47
+ * @author Mikita Hancharou <m.hancharou@gmail.com>
+ * @package by.goncharov.controller
  */
 @Controller
-public class WelcomeController {
-
-    @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
-    public ModelAndView handleRequestInternal(ModelAndView model) throws Exception {
-        model.setViewName("login");
-        return model;
-    }
+public class WelcomeController
+{
+	/**
+	 * Handles Request Internal.
+	 *
+	 * @param model the mvc model
+	 *
+	 * @return the mvc model
+	 *
+	 * @throws Exception the Exception
+	 */
+	@RequestMapping(value = "/loginPage", method = RequestMethod.GET)
+	public ModelAndView handleRequestInternal(final ModelAndView model) throws Exception
+	{
+		model.setViewName("login");
+		return model;
+	}
 }

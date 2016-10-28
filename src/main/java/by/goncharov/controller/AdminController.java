@@ -6,21 +6,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Description of AdminController class
+ * Admin Page Controller.
  *
- * @author Mikita Hancharou
- * @created 03.11.2015 23:28
+ * @author Mikita Hancharou <m.hancharou@gmail.com>
+ * @package by.goncharov.controller
  */
 @Controller
 @RequestMapping(value = "/admin")
-public class AdminController {
+public class AdminController
+{
+	/**
+	 * Prints Welcome.
+	 *
+	 * @param model the mvc model
+	 *
+	 * @return the mvc model
+	 */
+	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
+	public ModelAndView printWelcome(final ModelAndView model)
+	{
+		model.addObject("title", "Spring Security + Hibernate Example");
+		model.addObject("message", "This is default page!");
+		model.setViewName("secure/dashboard");
 
-    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
-    public ModelAndView printWelcome(ModelAndView model) {
-        model.addObject("title", "Spring Security + Hibernate Example");
-        model.addObject("message", "This is default page!");
-        model.setViewName("secure/dashboard");
-
-        return model;
-    }
+		return model;
+	}
 }

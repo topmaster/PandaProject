@@ -15,57 +15,90 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Description of AuthorizationController class
+ * Authorization page Controller.
  *
- * @author Mikita Hancharou
- * @created 19.10.2015 21:23
+ * @author Mikita Hancharou <m.hancharou@gmail.com>
+ * @package by.goncharov.controller
  */
 @Controller
 @RequestMapping(value = "/authorization")
-public class AuthorizationController {
+public class AuthorizationController
+{
+	/**
+	 * Login page.
+	 *
+	 * @param error   the error request param
+	 * @param logout  the logout request param
+	 * @param request the HttpServletRequest
+	 *
+	 * @return the mvc model
+	 */
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView login(@RequestParam(value = "error", required = false) final String error,
+	                          @RequestParam(value = "logout", required = false) final String logout,
+	                          final HttpServletRequest request)
+	{
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView login(@RequestParam(value = "error", required = false) String error,
-                              @RequestParam(value = "logout", required = false) String logout, HttpServletRequest request) {
+		final ModelAndView model = new ModelAndView();
+		if (error != null)
+		{
+			model.addObject("error", getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
+		}
 
-        ModelAndView model = new ModelAndView();
-        if (error != null) {
-            model.addObject("error", getErrorMessage(request, "SPRING_SECURITY_LAST_EXCEPTION"));
-        }
+		if (logout != null)
+		{
+			model.addObject("msg", "You've been logged out successfully.");
+		}
+		model.setViewName("login");
 
-        if (logout != null) {
-            model.addObject("msg", "You've been logged out successfully.");
-        }
-        model.setViewName("login");
+		return model;
+	}
 
-        return model;
-    }
+	/**
+	 * Access Denied.
+	 *
+	 * @return the mvc model
+	 */
+	@RequestMapping(value = "/403", method = RequestMethod.GET)
+	public ModelAndView accessDenied()
+	{
+		final ModelAndView model = new ModelAndView();
+		final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (!(auth instanceof AnonymousAuthenticationToken))
+		{
+			final UserDetails userDetail = (UserDetails) auth.getPrincipal();
+			System.out.println(userDetail);
+			model.addObject("username", userDetail.getUsername());
+		}
+		model.setViewName("403");
+		return model;
+	}
 
-    @RequestMapping(value = "/403", method = RequestMethod.GET)
-    public ModelAndView accesssDenied() {
-        ModelAndView model = new ModelAndView();
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (!(auth instanceof AnonymousAuthenticationToken)) {
-            UserDetails userDetail = (UserDetails) auth.getPrincipal();
-            System.out.println(userDetail);
-            model.addObject("username", userDetail.getUsername());
-        }
-        model.setViewName("403");
-        return model;
-    }
+	/**
+	 * Gets Error Message.
+	 *
+	 * @param request the HttpServletRequest
+	 * @param key     the key
+	 *
+	 * @return the error
+	 */
+	private String getErrorMessage(final HttpServletRequest request, final String key)
+	{
+		final Exception exception = (Exception) request.getSession().getAttribute(key);
 
-    private String getErrorMessage(HttpServletRequest request, String key) {
-
-        Exception exception = (Exception) request.getSession().getAttribute(key);
-
-        String error = "";
-        if (exception instanceof BadCredentialsException) {
-            error = "Invalid username and password!";
-        } else if (exception instanceof LockedException) {
-            error = exception.getMessage();
-        } else {
-            error = "Invalid username and password!";
-        }
-        return error;
-    }
+		String error;
+		if (exception instanceof BadCredentialsException)
+		{
+			error = "Invalid username and password!";
+		}
+		else if (exception instanceof LockedException)
+		{
+			error = exception.getMessage();
+		}
+		else
+		{
+			error = "Invalid username and password!";
+		}
+		return error;
+	}
 }

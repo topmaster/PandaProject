@@ -1,20 +1,44 @@
 package by.goncharov.dao;
 
-import by.goncharov.entity.User;
+import by.goncharov.entity.UserEntity;
 
 /**
- * Description of UserDAO class
+ * UserDAO.
  *
- * @author Mikita Hancharou
- * @created 23.05.13 12:44
+ * @author Mikita Hancharou <m.hancharou@gmail.com>
+ * @package by.goncharov.controller
  */
-public interface UserDAO {
+public interface UserDAO
+{
+	/**
+	 * Saves.
+	 *
+	 * @param entity the user entity
+	 */
+	void save(UserEntity entity);
 
-    void save(User user);
+	/**
+	 * Deletes.
+	 *
+	 * @param entity the userEntity
+	 */
+	void delete(UserEntity entity);
 
-    void delete(User user);
+	/**
+	 * Finds by id.
+	 *
+	 * @param id the id
+	 *
+	 * @return the UserEntity
+	 */
+	UserEntity findById(Long id);
 
-    User find(Long userId);
-
-    User findUserByUsername(String username);
+	/**
+	 * Finds User By Username.
+	 *
+	 * @param username the username
+	 *
+	 * @return the UserEntity
+	 */
+	UserEntity findUserByUsername(String username);
 }

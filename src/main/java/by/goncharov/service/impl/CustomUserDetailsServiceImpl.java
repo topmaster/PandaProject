@@ -1,7 +1,9 @@
 package by.goncharov.service.impl;
 
 import by.goncharov.dao.UserDAO;
-import by.goncharov.entity.Role;
+import by.goncharov.entity.RoleEntity;
+import by.goncharov.entity.UserEntity;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,40 +19,63 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Description of AuthorizationServiceImpl class
+ * AuthorizationServiceImpl.
  *
- * @author Mikita Hancharou
- * @created 19.10.2015 19:33
+ * @author Mikita Hancharou <m.hancharou@gmail.com>
+ * @package by.goncharov.controller
  */
 @Service
-public class CustomUserDetailsServiceImpl implements UserDetailsService {
+public class CustomUserDetailsServiceImpl implements UserDetailsService
+{
+	@Autowired
+	private UserDAO userDAO;
 
-    @Autowired
-    UserDAO userDAO;
+	/**
+	 * {@inheritDoc}
+	 */
+	public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException
+	{
+		UserEntity userEntity = userDAO.findUserByUsername(username);
 
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        by.goncharov.entity.User user = userDAO.findUserByUsername(username);
+		if (userEntity == null)
+		{
+			throw new UsernameNotFoundException("no such userEntity with username" + username);
+		}
 
-        List<GrantedAuthority> authorities = buildUserAuthority(user.getRole());
+		List<GrantedAuthority> authorities = buildUserAuthority(userEntity.getRoleEntity());
 
-        return buildUserForAuthentication(user, authorities);
-    }
+		return buildUserForAuthentication(userEntity, authorities);
+	}
 
-    private List<GrantedAuthority> buildUserAuthority(Role role) {
+	/**
+	 * Builds User Authority.
+	 *
+	 * @param roleEntity the roleEntity
+	 *
+	 * @return the list of GrantedAuthority
+	 */
+	private List<GrantedAuthority> buildUserAuthority(final RoleEntity roleEntity)
+	{
 
-        Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
+		final Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
 
-        // Build user's authorities
-        setAuths.add(new SimpleGrantedAuthority(role.getRoleName()));
+		// Build user's authorities
+		setAuths.add(new SimpleGrantedAuthority(roleEntity.getRoleName()));
 
-        List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
+		return new ArrayList<GrantedAuthority>(setAuths);
+	}
 
-        return Result;
-    }
-
-    private User buildUserForAuthentication(by.goncharov.entity.User user, List<GrantedAuthority> authorities) {
-        return new User(user.getUsername(), user.getPassword(), true, true, true, true, authorities);
-    }
-
+	/**
+	 * Builds User For Authentication.
+	 *
+	 * @param userEntity  the userEntity
+	 * @param authorities the authorities
+	 *
+	 * @return the User
+	 */
+	private User buildUserForAuthentication(final UserEntity userEntity, final List<GrantedAuthority> authorities)
+	{
+		return new User(userEntity.getUsername(), userEntity.getPassword(), true, true, true, true, authorities);
+	}
 
 }

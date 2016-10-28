@@ -23,7 +23,7 @@
 
         <table>
             <tr>
-                <td><spring:message code="welcome.label.user"/></td>
+                <td><spring:message code="welcome.label.userEntity"/></td>
                 <td>
                     <input type='text' name='username'>
                 </td>
